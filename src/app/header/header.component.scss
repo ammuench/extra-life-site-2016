@@ -1,0 +1,78 @@
+.header {
+    img{
+        width: 100%;
+    }
+    border-bottom: 1px solid #e5e5e5;
+    /* Make the masthead heading the same height as the navigation */
+    h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+        line-height: 40px;
+    }
+    @media (min-width: 992px) {
+        .header-image {
+            text-align: left;
+        }
+        .button-block {
+            height: 256px;
+            .donate {
+                height: 50%;
+                h1 {
+                    margin-top: 30px;
+                }
+            }
+        }
+    }
+    @media (min-width: 768px) and (max-width: 991px) {
+        .button-block {
+            height: 240px;
+            .donate {
+                height: 50%;
+            }
+            .teem-button {
+                height: 110px;
+                .btn {
+                    height: 100%;
+                    a.btn {
+                        height: 100%;
+                        h3 {
+                            word-break: break-word;
+                            white-space: normal;
+                            font-size: 35px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media(min-width: 768px) and (max-width: 800px){
+      .button-block .teem-button .btn a.btn{
+        h3{
+          font-size: 32px;
+        }
+      }
+    }
+
+    @media(max-width: 767px){
+      .button-block .teem-button .btn a.btn{
+        h3{
+          font-size: 30px;
+        }
+      }
+    }
+    @media(max-width: 386px){
+      .button-block .teem-button .btn a.btn{
+        h3{
+          font-size: 26px;
+        }
+      }
+    }
+    @media(max-width: 358px){
+      .button-block .teem-button .btn a.btn{
+        h3{
+          font-size: 21px;
+        }
+      }
+    }
+}
