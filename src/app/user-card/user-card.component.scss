@@ -1,0 +1,19 @@
+.user{
+    text-align: center;
+    
+    @media(min-width: 768px){
+        min-height: 405px;
+
+        .thumbnail{
+            min-height: 405px;
+        }
+    }
+
+    @media(min-width: 992px){
+        .profile-button{
+            max-width: 266px;
+            word-break: break-word;
+            white-space: normal;
+        }
+    }
+}
