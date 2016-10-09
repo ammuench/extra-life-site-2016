@@ -16,7 +16,7 @@ export class TeampageComponent implements OnInit {
   constructor(private _elApi: ExtraLifeApiService) { }
 
   ngOnInit() {
-    this._elApi.getTeamMembersObservable()
+    this._elApi.getTeamMembers(29978)
       .subscribe(
         roster => this.rosterList = roster
       );

@@ -9,6 +9,8 @@ import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { TeampageComponent } from './teampage/teampage.component';
 import { UserCardComponent } from './user-card/user-card.component';
+import { UserPageComponent } from './user-page/user-page.component';
+import { UserpageComponent } from './userpage/userpage.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { UserCardComponent } from './user-card/user-card.component';
     HeaderComponent,
     HomepageComponent,
     TeampageComponent,
-    UserCardComponent
+    UserCardComponent,
+    UserPageComponent,
+    UserpageComponent
   ],
   imports: [
     BrowserModule,
