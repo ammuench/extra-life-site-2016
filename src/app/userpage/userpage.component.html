@@ -2,42 +2,43 @@
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<div class="picture col-xs-12 col-md-6">
-				<img ng-src={{userObj.avatarImageURL}} alt="">
+				<img src='userimg.png' alt="">
 			</div>
-			<div class="info col-xs-12 col-md-6">
-				<h2 class="name">{{userObj.firstName}} {{userObj.lastName}}</h2>
-				<div class="links ">
-					<div class="btn btn-info profile-link">
-						<a ng-href="http://www.extra-life.org/index.cfm?fuseaction=donordrive.participant&participantID={{userObj.participantID}}">Visit {{userObj.firstName}}'s Extra-Life Profile!</a>
-					</div>
-					<div class="btn btn-info">
-						<a ng-href="https://www.extra-life.org/index.cfm?fuseaction=donate.participant&participantID={{userObj.participantID}}">Donate to {{userObj.firstName}}'s Extra-Life Profile!</a>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="details col-xs-12">
-				<h3 class="donation-header">Progress and Recent Donations!</h3>
-				<h4 class="donationLabel">${{userObj.totalRaisedAmount}}/${{userObj.fundraisingGoal}}</h4>
-				<div class="progress">
-					<div class="progress-bar progress-bar-warning" role="progressbar" data-aria-valuenow={{userObj.totalRaisedAmount}} aria-valuemin="0" data-aria-valuemax={{userObj.fundraisingGoal}} style="{{donationPercentage(userObj.totalRaisedAmount, userObj.fundraisingGoal)}}"></div>
-				</div>
-				<!-- <h3 class="donation-header">Recent Donations!</h3> -->
-				<div class="donations-list">
-					<p class="nodonations" ng-show="noDonations">
-						<em>This person hasn't received a donation yet.  
-							<a ng-href="https://www.extra-life.org/index.cfm?fuseaction=donate.participant&participantID={{userObj.participantID}}">Be the first!</a>
-						</em>
-					</p>
-					<ul ng-show="!noDonations">
-						<li ng-repeat="donation in recentDonations">
-							<p><strong>{{donation.name}} on {{donation.date}}</strong></p>
-							<p ng-show="donation.message.length > 0"><em>{{donation.message}}</em></p>
-							<p ng-if="!$last" class="spacer"></p>
-						</li>
-					</ul>
-				</div>
-			</div>
+      <div *ngIf="isLoaded">
+        <div class="info col-xs-12 col-md-6">
+          <h2 class="name">{{userInfo.firstName}} {{userInfo.lastName}}</h2>
+          <div class="links ">
+            <div class="btn btn-info profile-link">
+              <a href="http://www.extra-life.org/index.cfm?fuseaction=donordrive.participant&participantID={{userInfo.participantID}}">Visit {{userInfo.firstName}}'s Extra-Life Profile!</a>
+            </div>
+            <div class="btn btn-info">
+              <a href="https://www.extra-life.org/index.cfm?fuseaction=donate.participant&participantID={{userInfo.participantID}}">Donate to {{userInfo.firstName}}'s Extra-Life Profile!</a>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="details col-xs-12">
+          <h3 class="donation-header">Progress and Recent Donations!</h3>
+          <h4 class="donationLabel">${{userInfo.totalRaisedAmount}}/${{userInfo.fundraisingGoal}}</h4>
+          <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar" style="{{donationPercentage(userInfo.totalRaisedAmount, userInfo.fundraisingGoal)}}"></div>
+          </div>
+          <div class="donations-list">
+            <p class="nodonations" *ngIf="userDonations.length < 1">
+              <em>This person hasn't received a donation yet.  
+                <a href="https://www.extra-life.org/index.cfm?fuseaction=donate.participant&participantID={{userInfo.participantID}}">Be the first!</a>
+              </em>
+            </p>
+            <ul *ngIf="userDonations.length > 0">
+              <li *ngFor='let donation of userDonations'>
+                <p><strong>{{donation.name}} on {{donation.date}}</strong></p>
+                <p ng-show="donation.message.length > 0"><em>{{donation.message}}</em></p>
+                <p ng-if="!$last" class="spacer"></p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
 		</div>
 	</div>
 </div>
