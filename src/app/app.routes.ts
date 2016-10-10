@@ -8,7 +8,7 @@ import { UserpageComponent } from './userpage/userpage.component';
 const routes: Routes = [
   {path: '', component: HomepageComponent},
   {path: 'teem', component: TeampageComponent },
-  {path: 'user', component: UserpageComponent}
+  {path: 'user/:id', component: UserpageComponent}
 ];
 
 export const routing = RouterModule.forRoot(routes);

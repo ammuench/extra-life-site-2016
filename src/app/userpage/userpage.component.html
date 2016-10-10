@@ -22,7 +22,7 @@
             <h3 class="donation-header">Progress and Recent Donations!</h3>
             <h4 class="donationLabel">${{userInfo.totalRaisedAmount}}/${{userInfo.fundraisingGoal}}</h4>
             <div class="progress">
-              <div class="progress-bar progress-bar-warning" role="progressbar" style="{{donationPercentage(userInfo.totalRaisedAmount, userInfo.fundraisingGoal)}}"></div>
+              <div class="progress-bar progress-bar-warning" role="progressbar" [ngStyle]="donationPercentage(userInfo.totalRaisedAmount, userInfo.fundraisingGoal)"></div>
             </div>
             <div class="donations-list">
               <p class="nodonations" *ngIf="userDonations.length < 1">
@@ -32,7 +32,7 @@
               </p>
               <ul *ngIf="userDonations.length > 0">
                 <li *ngFor='let donation of userDonations'>
-                  <p><strong>{{donation.name}} on {{donation.date}}</strong></p>
+                  <p><strong>{{nameFormatter(donation.donorName)}} {{amountFormatter(donation.donationAmount)}} on {{donation.createdOn | date: 'MM/dd/yyyy'}}</strong></p>
                   <p ng-show="donation.message.length > 0"><em>{{donation.message}}</em></p>
                   <p ng-if="!$last" class="spacer"></p>
                 </li>

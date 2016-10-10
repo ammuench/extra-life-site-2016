@@ -9,7 +9,7 @@
         <strong>Current Amount Raised: </strong>${{member.raised}}
       </p>
       <p>
-        <a class="btn btn-primary details-button" role="button">
+        <a [routerLink]="['/user', member.pID ]" class="btn btn-primary details-button" role="button">
 								{{member.name}}'s info!
 							</a>
         <br class="hidden-xs">
