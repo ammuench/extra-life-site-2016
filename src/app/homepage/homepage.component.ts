@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, OnDestroy } from '@angular/core';
 
 import { Team } from '../interfaces/team';
 import { ExtraLifeApiService } from '../elapi/extra-life-api.service';
@@ -12,6 +12,7 @@ export class HomepageComponent implements OnInit, AfterContentInit {
 
   dataLoaded: Boolean = false;
   teamInfo: Team;
+  apiInterval: any;
 
   donationPercentage(current: number, goal: number): Object {
     const percent = (current / goal) * 100;
@@ -35,7 +36,7 @@ export class HomepageComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    setInterval(() => {
+    this.apiInterval = setInterval(() => {
       this._elApi.getTeamInfo(29978)
         .subscribe(
           data => {
@@ -44,6 +45,10 @@ export class HomepageComponent implements OnInit, AfterContentInit {
           }
         );
     }, 5000);
+  }
+
+  ngOnDestroy() {
+    clearImmediate(this.apiInterval);
   }
 
 }

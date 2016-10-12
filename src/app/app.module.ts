@@ -30,7 +30,7 @@ import { UserpageComponent } from './userpage/userpage.component';
     HttpModule,
     routing
   ],
-  providers: [{ provide: APP_BASE_HREF, useValue: environment.baseUrl }],
+  providers: [{ provide: APP_BASE_HREF, useValue: environment.baseUrl }, ExtraLifeApiService],
   bootstrap: [AppComponent]
 })
 
