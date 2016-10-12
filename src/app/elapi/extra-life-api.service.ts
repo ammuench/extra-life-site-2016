@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 
 import { environment } from '../../environments/environment';
 
+import { Team } from '../interfaces/team';
 import { TeamMember } from '../interfaces/team-member';
 import { User } from '../interfaces/user';
 import { Observable } from 'rxjs/Observable';
@@ -12,6 +13,12 @@ export class ExtraLifeApiService {
 
   constructor(private _http: Http) { };
 
+  getTeamInfo(id: number): Observable<Team> {
+    return this._http.get(environment.url + 'getTeam/' + id)
+      .map(this._simpleDataHandler)
+      .catch(this._errorHandler);
+  }
+
   getTeamMembers(id: number): Observable<TeamMember[]> {
     return this._http.get(environment.url + 'getTeam/' + id)
       .map(this._teamRosterHandler)
@@ -20,17 +27,17 @@ export class ExtraLifeApiService {
 
   getUserInfo(id: number): Observable<User> {
     return this._http.get(environment.url + 'getUser/' + id)
-      .map(this._userInfoHandler)
+      .map(this._simpleDataHandler)
       .catch(this._errorHandler);
   };
 
   getUserForkJoin(id: number): Observable<any[]> {
     return Observable.forkJoin(
       this._http.get(environment.url + 'getUser/' + id)
-        .map(this._userInfoHandler)
+        .map(this._simpleDataHandler)
         .catch(this._errorHandler),
       this._http.get(environment.url + 'getUserDonations/' + id)
-        .map(this._userInfoHandler)
+        .map(this._simpleDataHandler)
         .catch(this._errorHandler)
     )
   }
@@ -40,7 +47,7 @@ export class ExtraLifeApiService {
     return body.members;
   }
 
-  private _userInfoHandler(res: Response) {
+  private _simpleDataHandler(res: Response) {
     let body = res.json();
     return body;
   }

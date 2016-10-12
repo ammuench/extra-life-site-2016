@@ -3,7 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing } from './app.routes';
+import { APP_BASE_HREF } from '@angular/common';
 
+import { ExtraLifeApiService } from './elapi/extra-life-api.service';
+
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -26,10 +30,10 @@ import { UserpageComponent } from './userpage/userpage.component';
     HttpModule,
     routing
   ],
-  providers: [],
+  providers: [{ provide: APP_BASE_HREF, useValue: environment.baseUrl }],
   bootstrap: [AppComponent]
 })
 
-export class AppModule { 
-  
+export class AppModule {
+
 }
